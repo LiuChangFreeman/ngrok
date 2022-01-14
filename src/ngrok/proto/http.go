@@ -62,11 +62,12 @@ func extractBody(r io.ReadCloser) ([]byte, io.ReadCloser, error) {
 func (h *Http) GetName() string { return "http" }
 
 func (h *Http) WrapConn(c conn.Conn, ctx interface{}) conn.Conn {
-	tee := conn.NewTee(c)
-	lastTxn := make(chan *HttpTxn)
-	go h.readRequests(tee, lastTxn, ctx)
-	go h.readResponses(tee, lastTxn)
-	return tee
+	// tee := conn.NewTee(c)
+	// lastTxn := make(chan *HttpTxn)
+	// go h.readRequests(tee, lastTxn, ctx)
+	// go h.readResponses(tee, lastTxn)
+	// return tee
+	return c
 }
 
 func (h *Http) readRequests(tee *conn.Tee, lastTxn chan *HttpTxn, connCtx interface{}) {
