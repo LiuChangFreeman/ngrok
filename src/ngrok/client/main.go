@@ -2,9 +2,7 @@ package client
 
 import (
 	"fmt"
-	log2 "log"
 	"math/rand"
-	"net/http"
 	_ "net/http/pprof"
 	"ngrok/log"
 	"ngrok/util"
@@ -35,9 +33,9 @@ func Main() {
 		os.Exit(1)
 	}
 
-	go func() {
-		log2.Println(http.ListenAndServe("localhost:6060", nil))
-	}()
+	// go func() {
+	// 	log2.Println(http.ListenAndServe("localhost:6060", nil))
+	// }()
 
 	debug.SetGCPercent(10)
 
@@ -51,13 +49,13 @@ func Main() {
 		os.Exit(1)
 	}
 
-	go func() {
-		ticker := time.NewTicker(5 * time.Second)
-		defer ticker.Stop()
-		for range ticker.C {
-			debug.FreeOSMemory()
-		}
-	}()
+	// go func() {
+	// 	ticker := time.NewTicker(5 * time.Second)
+	// 	defer ticker.Stop()
+	// 	for range ticker.C {
+	// 		debug.FreeOSMemory()
+	// 	}
+	// }()
 
 	// seed random number generator
 	seed, err := util.RandomSeed()
